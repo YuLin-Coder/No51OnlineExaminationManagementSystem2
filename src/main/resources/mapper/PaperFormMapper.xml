@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wil.mapper.PaperFormMapper">
+  <resultMap id="BaseResultMap" type="com.wil.entity.PaperForm">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="q_choice_num" jdbcType="VARCHAR" property="qChoiceNum" />
+    <result column="q_choice_score" jdbcType="VARCHAR" property="qChoiceScore" />
+    <result column="q_mul_choice_num" jdbcType="VARCHAR" property="qMulChoiceNum" />
+    <result column="q_mul_choice_score" jdbcType="VARCHAR" property="qMulChoiceScore" />
+    <result column="q_tof_num" jdbcType="VARCHAR" property="qTofNum" />
+    <result column="q_tof_score" jdbcType="VARCHAR" property="qTofScore" />
+    <result column="q_fill_num" jdbcType="VARCHAR" property="qFillNum" />
+    <result column="q_fill_score" jdbcType="VARCHAR" property="qFillScore" />
+    <result column="q_SAQ_num" jdbcType="VARCHAR" property="qSaqNum" />
+    <result column="q_SAQ_score" jdbcType="VARCHAR" property="qSaqScore" />
+    <result column="q_program_num" jdbcType="VARCHAR" property="qProgramNum" />
+    <result column="q_program_score" jdbcType="VARCHAR" property="qProgramScore" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, q_choice_num, q_choice_score, q_mul_choice_num, q_mul_choice_score, q_tof_num, 
+    q_tof_score, q_fill_num, q_fill_score, q_SAQ_num, q_SAQ_score, q_program_num, q_program_score
+  </sql>
+  <select id="selectByExample" parameterType="com.wil.entity.PaperFormExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from paper_form
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from paper_form
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from paper_form
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wil.entity.PaperFormExample">
+    delete from paper_form
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wil.entity.PaperForm">
+    insert into paper_form (id, q_choice_num, q_choice_score, 
+      q_mul_choice_num, q_mul_choice_score, q_tof_num, 
+      q_tof_score, q_fill_num, q_fill_score, 
+      q_SAQ_num, q_SAQ_score, q_program_num, 
+      q_program_score)
+    values (#{id,jdbcType=INTEGER}, #{qChoiceNum,jdbcType=VARCHAR}, #{qChoiceScore,jdbcType=VARCHAR}, 
+      #{qMulChoiceNum,jdbcType=VARCHAR}, #{qMulChoiceScore,jdbcType=VARCHAR}, #{qTofNum,jdbcType=VARCHAR}, 
+      #{qTofScore,jdbcType=VARCHAR}, #{qFillNum,jdbcType=VARCHAR}, #{qFillScore,jdbcType=VARCHAR}, 
+      #{qSaqNum,jdbcType=VARCHAR}, #{qSaqScore,jdbcType=VARCHAR}, #{qProgramNum,jdbcType=VARCHAR}, 
+      #{qProgramScore,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wil.entity.PaperForm" useGeneratedKeys="true" keyProperty="id">
+    insert into paper_form
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="qChoiceNum != null">
+        q_choice_num,
+      </if>
+      <if test="qChoiceScore != null">
+        q_choice_score,
+      </if>
+      <if test="qMulChoiceNum != null">
+        q_mul_choice_num,
+      </if>
+      <if test="qMulChoiceScore != null">
+        q_mul_choice_score,
+      </if>
+      <if test="qTofNum != null">
+        q_tof_num,
+      </if>
+      <if test="qTofScore != null">
+        q_tof_score,
+      </if>
+      <if test="qFillNum != null">
+        q_fill_num,
+      </if>
+      <if test="qFillScore != null">
+        q_fill_score,
+      </if>
+      <if test="qSaqNum != null">
+        q_SAQ_num,
+      </if>
+      <if test="qSaqScore != null">
+        q_SAQ_score,
+      </if>
+      <if test="qProgramNum != null">
+        q_program_num,
+      </if>
+      <if test="qProgramScore != null">
+        q_program_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="qChoiceNum != null">
+        #{qChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qChoiceScore != null">
+        #{qChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qMulChoiceNum != null">
+        #{qMulChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qMulChoiceScore != null">
+        #{qMulChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qTofNum != null">
+        #{qTofNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qTofScore != null">
+        #{qTofScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qFillNum != null">
+        #{qFillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qFillScore != null">
+        #{qFillScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qSaqNum != null">
+        #{qSaqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qSaqScore != null">
+        #{qSaqScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qProgramNum != null">
+        #{qProgramNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qProgramScore != null">
+        #{qProgramScore,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wil.entity.PaperFormExample" resultType="java.lang.Long">
+    select count(*) from paper_form
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update paper_form
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.qChoiceNum != null">
+        q_choice_num = #{record.qChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qChoiceScore != null">
+        q_choice_score = #{record.qChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qMulChoiceNum != null">
+        q_mul_choice_num = #{record.qMulChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qMulChoiceScore != null">
+        q_mul_choice_score = #{record.qMulChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qTofNum != null">
+        q_tof_num = #{record.qTofNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qTofScore != null">
+        q_tof_score = #{record.qTofScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qFillNum != null">
+        q_fill_num = #{record.qFillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qFillScore != null">
+        q_fill_score = #{record.qFillScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qSaqNum != null">
+        q_SAQ_num = #{record.qSaqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qSaqScore != null">
+        q_SAQ_score = #{record.qSaqScore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qProgramNum != null">
+        q_program_num = #{record.qProgramNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qProgramScore != null">
+        q_program_score = #{record.qProgramScore,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update paper_form
+    set id = #{record.id,jdbcType=INTEGER},
+      q_choice_num = #{record.qChoiceNum,jdbcType=VARCHAR},
+      q_choice_score = #{record.qChoiceScore,jdbcType=VARCHAR},
+      q_mul_choice_num = #{record.qMulChoiceNum,jdbcType=VARCHAR},
+      q_mul_choice_score = #{record.qMulChoiceScore,jdbcType=VARCHAR},
+      q_tof_num = #{record.qTofNum,jdbcType=VARCHAR},
+      q_tof_score = #{record.qTofScore,jdbcType=VARCHAR},
+      q_fill_num = #{record.qFillNum,jdbcType=VARCHAR},
+      q_fill_score = #{record.qFillScore,jdbcType=VARCHAR},
+      q_SAQ_num = #{record.qSaqNum,jdbcType=VARCHAR},
+      q_SAQ_score = #{record.qSaqScore,jdbcType=VARCHAR},
+      q_program_num = #{record.qProgramNum,jdbcType=VARCHAR},
+      q_program_score = #{record.qProgramScore,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wil.entity.PaperForm">
+    update paper_form
+    <set>
+      <if test="qChoiceNum != null">
+        q_choice_num = #{qChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qChoiceScore != null">
+        q_choice_score = #{qChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qMulChoiceNum != null">
+        q_mul_choice_num = #{qMulChoiceNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qMulChoiceScore != null">
+        q_mul_choice_score = #{qMulChoiceScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qTofNum != null">
+        q_tof_num = #{qTofNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qTofScore != null">
+        q_tof_score = #{qTofScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qFillNum != null">
+        q_fill_num = #{qFillNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qFillScore != null">
+        q_fill_score = #{qFillScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qSaqNum != null">
+        q_SAQ_num = #{qSaqNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qSaqScore != null">
+        q_SAQ_score = #{qSaqScore,jdbcType=VARCHAR},
+      </if>
+      <if test="qProgramNum != null">
+        q_program_num = #{qProgramNum,jdbcType=VARCHAR},
+      </if>
+      <if test="qProgramScore != null">
+        q_program_score = #{qProgramScore,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wil.entity.PaperForm">
+    update paper_form
+    set q_choice_num = #{qChoiceNum,jdbcType=VARCHAR},
+      q_choice_score = #{qChoiceScore,jdbcType=VARCHAR},
+      q_mul_choice_num = #{qMulChoiceNum,jdbcType=VARCHAR},
+      q_mul_choice_score = #{qMulChoiceScore,jdbcType=VARCHAR},
+      q_tof_num = #{qTofNum,jdbcType=VARCHAR},
+      q_tof_score = #{qTofScore,jdbcType=VARCHAR},
+      q_fill_num = #{qFillNum,jdbcType=VARCHAR},
+      q_fill_score = #{qFillScore,jdbcType=VARCHAR},
+      q_SAQ_num = #{qSaqNum,jdbcType=VARCHAR},
+      q_SAQ_score = #{qSaqScore,jdbcType=VARCHAR},
+      q_program_num = #{qProgramNum,jdbcType=VARCHAR},
+      q_program_score = #{qProgramScore,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
