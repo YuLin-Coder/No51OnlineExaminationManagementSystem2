@@ -1,20 +1,14 @@
 <p><h1 align="center">51.基于ssm的在线考试管理系统</h1></p>
 
-###  获取sql数据库文件: 从戎源码网 (https://armycodes.com/) QQ: 386869957 QQ群: 377586148 
-###  所有系统地址: (https://github.com/YuLin-Coder/AllProjectCatalog) 
-###  所有项目以及源代码本人均调试运行无问题 可支持远程安装部署调试、定制修改、代码讲解
+- <b>完整代码获取地址：从戎源码网 ([https://armycodes.com/](https://armycodes.com/))</b>
+- <b>技术探讨、资料分享，请加QQ群：692619798</b> 
+- <b>作者微信：19941326836  QQ：952045282</b> 
+- <b>承接计算机毕业设计、Java毕业设计、Python毕业设计、深度学习、机器学习</b>
+- <b>选题+开题报告+任务书+程序定制+安装调试+论文+答辩ppt 一条龙服务</b>
+- <b>所有选题地址（https://github.com/YuLin-Coder/AllProjectCatalog）</b>
 
-## 简介
 
-> 本代码来源于网络,仅供学习参考使用!
-> 
-> 管理员登录地址：http://localhost:8080/admin/login
-> 管理员：456 123
-> 
-> 学生和老师登录地址：http://localhost:8080/
-> 学生：311409030311 123
-> 老师：123 123
-> 
+
 
 ## 环境
 
